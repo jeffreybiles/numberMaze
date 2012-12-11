@@ -23,6 +23,7 @@ ig.module('game.entities.gate').requires(
           ig.game.state = 'problem'
           ig.game.gate = @
           @makeQuestion()
+          @player_answer = ""
         else
           ig.game.spawnEntity(EntityMessage, @failMessage())
 
