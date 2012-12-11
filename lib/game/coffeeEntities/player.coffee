@@ -12,10 +12,11 @@ ig.module(
     additionLevel: 0
     subtractionLevel: 0
 
-    size: {x:48, y:48}
+    size: {x:32, y:32}
+    offset: {x: 8, y:8}
     animSheet: new ig.AnimationSheet( 'media/puck.png', 48, 48 )
 
-    moveSpeed: 400
+    moveSpeed: 200
     maxVel: {x: 800, y:800}
 
     init: ( x, y, settings ) ->
