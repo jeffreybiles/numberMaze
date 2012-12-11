@@ -15,7 +15,6 @@ ig.module('game.entities.gate').requires(
     init: ( x, y, settings ) ->
       @parent x, y, settings
       @animSheet =  new ig.AnimationSheet( 'media/tileset.png', @spriteSize.x, @spriteSize.y );
-      @addAnim 'idle', 1, [1]
 
     check: ->
       @parent()
@@ -26,6 +25,9 @@ ig.module('game.entities.gate').requires(
           @makeQuestion()
         else
           ig.game.spawnEntity(EntityMessage, @failMessage())
+
+    passable: ->
+      @difficulty <= ig.game.stats[@gateType].level
 
 
     checkAnswer: ->
