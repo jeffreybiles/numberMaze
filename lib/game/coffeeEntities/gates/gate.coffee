@@ -66,7 +66,7 @@ ig.module('game.entities.gates.gate').requires(
         @notice += "+ #{xpGained}xp"
 
     gainMoney: (stats) ->
-      moneyGained = Math.floor(Math.pow(@difficulty + 1, 1.7) * (1 + Math.random()));
+      moneyGained = Math.floor(Math.pow(@difficulty + 1, 1.7) * 1);
       stats.money += moneyGained
       @notice += "+ $#{moneyGained}/n"
 
