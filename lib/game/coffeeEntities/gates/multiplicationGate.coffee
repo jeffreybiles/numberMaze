@@ -1,4 +1,4 @@
-ig.module('game.entities.multiplicationGate').requires('game.entities.gate').defines ->
+ig.module('game.entities.gates.multiplicationGate').requires('game.entities.gates.gate').defines ->
   window.EntityMultiplicationGate = EntityGate.extend(
     gateType: 'multiplication'
     init: ( x, y, settings ) ->

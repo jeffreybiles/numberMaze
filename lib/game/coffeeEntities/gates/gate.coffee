@@ -1,4 +1,4 @@
-ig.module('game.entities.gate').requires(
+ig.module('game.entities.gates.gate').requires(
   'impact.entity',
   'game.entities.message'
 ).defines ->

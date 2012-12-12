@@ -1,4 +1,4 @@
-ig.module('game.entities.additionGate').requires('game.entities.gate').defines ->
+ig.module('game.entities.gates.additionGate').requires('game.entities.gates.gate').defines ->
   window.EntityAdditionGate = EntityGate.extend(
     gateType: 'addition'
     init: ( x, y, settings ) ->
