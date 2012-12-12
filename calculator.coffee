@@ -10,8 +10,22 @@ lvl1b = {
   required: [2, 1, 2, 2, 2, 3]
   optional: [20, 1, 3, 3, 2, 5, 2, 2, 3]
   cash: ['3-18', '3-24', '5-29']
-  chests: ['20-200']
+  chests: ['20-3155']
   treasure: 170
+}
+
+lvl1c = {
+  required: [6,5,6,5,6,6,5,6,4,6,6]
+  optional: [6,5,6,15,7,6,6,8,11,10]
+  cash: ["6-82", "11-214", "6-89", "10-207"]
+  chests: ["15-2179"]
+  treasure: 1296
+}
+
+lvl2a = {
+  required: [4,4,4,4,4,4,4,4,4,4,4]
+  optional: [4,4,4,4,4,6,7,5,8,5,5,5,12]
+  cash: [""]
 }
 
 xpFromGate = (difficulty) -> Math.floor(Math.pow(difficulty + 1, 1.5) * 10)
@@ -53,4 +67,9 @@ test = (path, level) ->
   console.log(moneyFromPath(path, level))
   console.log(xpFromPath(path, level))
 
-test(lvl1b, 3)
+test(lvl1a, 10)
+
+
+
+
+
