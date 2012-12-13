@@ -22,10 +22,30 @@ lvl1c = {
   treasure: 1296
 }
 
+#incomplete
 lvl2a = {
   required: [4,4,4,4,4,4,4,4,4,4,4]
   optional: [4,4,4,4,4,6,7,5,8,5,5,5,12]
-  cash: [""]
+  cash: []
+  chests: []
+  treasure: 0
+}
+
+#incomplete
+lvl2b = {
+  required: [3,3,3,3,3,4,4,4,4,2,2,2,2]
+  optional: [3,3,3,4,2,2,2]
+  cash: []
+  chests: []
+  treasure: 0
+}
+
+lvl3a = {
+  required: [1,1,1,3,2,2]
+  optional: [2,2,2,2,2,2,2,1,1,1,1,2,2,5]
+  cash: []
+  chests: []
+  treasure: 0
 }
 
 xpFromGate = (difficulty) -> Math.floor(Math.pow(difficulty + 1, 1.5) * 10)
@@ -63,13 +83,34 @@ moneyFromSeries = (series, level) ->
     money += moneyFromGate(gate) if gate <= level
   money
 
-test = (path, level) ->
+test = (path, level, name = null) ->
+  console.log("#{name} as level #{level}")
   console.log(moneyFromPath(path, level))
   console.log(xpFromPath(path, level))
 
-test(lvl1a, 10)
+additionPaths = ->
+  console.log("Paths for addition: ")
+  test(lvl1a, 1, "1a")
+  test(lvl1b, 3, "1b")
+  test(lvl1c, 6, "1c")
+  test(lvl2a, 4, "2a")
 
+subtractionPaths = ->
+  console.log("Paths for subtraction: ")
+  test(lvl3a, 3, "3a")
+  test(lvl2b, 4, "2b")
 
+additionPaths()
+subtractionPaths()
 
+testLevel = {
+  required: [2,2,2,2,2,2,2,2,2]
+  optional: []
+  chests: []
+  cash: []
+  treasure: 0
+}
+
+# test(testLevel, 2, "")
 
 
