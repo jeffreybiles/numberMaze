@@ -40,6 +40,14 @@ lvl2b = {
   treasure: 0
 }
 
+lvl2c = {
+  required: [5,5,5,5,5,5,5,5,5,5,5]
+  optional: [9,5,5,5,5,5,5,5,7,7]
+  cash: []
+  chests: []
+  treasure: 0
+}
+
 lvl3a = {
   required: [1,1,1,3,2,2]
   optional: [2,2,2,2,2,2,2,1,1,1,1,2,2,5]
@@ -99,6 +107,7 @@ subtractionPaths = ->
   console.log("Paths for subtraction: ")
   test(lvl3a, 3, "3a")
   test(lvl2b, 4, "2b")
+  test(lvl2c, 7, "2c")
 
 additionPaths()
 subtractionPaths()
