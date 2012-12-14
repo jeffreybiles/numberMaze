@@ -9,6 +9,7 @@ ig.module(
   'game.entities.dashboard',
   'game.entities.player',
   'game.entities.timer',
+  'game.entities.gui.rectangle'
 
   'game.levels.intro',
   'game.levels.center',
@@ -24,7 +25,6 @@ ig.module(
     state: 'main'
     gate: null
     level: null
-    analytics: null
 
     update: ->
       switch @state
@@ -66,6 +66,9 @@ ig.module(
       @save();
       ig.game.spawnEntity(EntityDashboard)
       if(@level != 'Center') then @timer = ig.game.spawnEntity(EntityTimer)
+      ig.game.spawnEntity(EntityRectangle, 100, 100, {
+        width: 50, height: 200, backgroundColor: 'white', borderColor: 'green', borderSize: '2'})
+
 
     changeLevel: (level, playerPosition) ->
       ig.game.loadLevelDeferred(level);
@@ -130,6 +133,7 @@ ig.module(
       ig.input.bind( ig.KEY.NUMPAD_8, '8')
       ig.input.bind( ig.KEY.NUMPAD_9, '9')
       ig.input.bind( ig.KEY.Y, 'yes')
+      ig.input.bind(ig.KEY.MOUSE1, 'click')
       @load()
 
     record: (category, action, label = "", value = null) ->
