@@ -6,6 +6,13 @@ ig.module('game.entities.gui.rectangle').requires('impact.entity').defines ->
       @backgroundColor = settings.backgroundColor
       @borderColor = settings.borderColor
       @borderSize = parseInt(settings.borderSize)
+      @container = settings.container
+      @ctx = ig.system.context
+      if @container
+        @x += @container.x
+        @y += @container.y
+      @zIndex = settings.zIndex || 1
+      ig.game.sortEntitiesDeferred()
 
     update: ->
       if ig.input.pressed('click')
@@ -17,9 +24,8 @@ ig.module('game.entities.gui.rectangle').requires('impact.entity').defines ->
       console.log('hello')
 
     draw: ->
-      ctx = ig.system.context
-      ctx.fillStyle = @borderColor;
-      ctx.fillRect(@x, @y, @width, @height)
-      ctx.fillStyle = @backgroundColor
-      ctx.fillRect(@x + @borderSize, @y + @borderSize, @width - @borderSize*2, @height - @borderSize*2)
+      @ctx.fillStyle = @borderColor;
+      @ctx.fillRect(@x, @y, @width, @height)
+      @ctx.fillStyle = @backgroundColor
+      @ctx.fillRect(@x + @borderSize, @y + @borderSize, @width - @borderSize*2, @height - @borderSize*2)
     )

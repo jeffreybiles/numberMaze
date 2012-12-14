@@ -28,7 +28,6 @@ ig.module(
       @font.draw(@timeLeft(), ig.system.width - 100, 20, @centering)
 
     max: ->
-      console.log(ig.game.stats.timeIncreases)
       90 + 15*ig.game.stats.timeIncreases
 
     change: (amount) ->

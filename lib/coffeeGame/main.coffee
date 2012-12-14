@@ -9,7 +9,8 @@ ig.module(
   'game.entities.dashboard',
   'game.entities.player',
   'game.entities.timer',
-  'game.entities.gui.rectangle'
+  'game.entities.gui.rectangle',
+  'game.entities.gui.completedLevel',
 
   'game.levels.intro',
   'game.levels.center',
@@ -66,8 +67,7 @@ ig.module(
       @save();
       ig.game.spawnEntity(EntityDashboard)
       if(@level != 'Center') then @timer = ig.game.spawnEntity(EntityTimer)
-      ig.game.spawnEntity(EntityRectangle, 100, 100, {
-        width: 50, height: 200, backgroundColor: 'white', borderColor: 'green', borderSize: '2'})
+      ig.game.spawnEntity(EntityCompletedLevel)
 
 
     changeLevel: (level, playerPosition) ->
