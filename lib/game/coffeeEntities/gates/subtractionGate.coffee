@@ -16,5 +16,4 @@ ig.module('game.entities.gates.subtractionGate').requires('game.entities.gates.g
 
     equation: ->
       Math.floor(Math.random()*Math.pow(@difficulty + 1.5, 1.4))
-
   )

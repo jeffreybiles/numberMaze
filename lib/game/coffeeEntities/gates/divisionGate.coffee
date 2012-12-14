@@ -16,5 +16,4 @@ ig.module('game.entities.gates.divisionGate').requires('game.entities.gates.gate
 
     equation: ->
       Math.floor(Math.random()*Math.pow(@difficulty + 1, 1.2))
-
   )
