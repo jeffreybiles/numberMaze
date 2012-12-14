@@ -31,7 +31,7 @@ ig.module('game.entities.gates.gate').requires(
       @difficulty <= ig.game.stats[@gateType].level
 
     failMessage: ->
-      ig.game.record("#{@gateType}Gate", "unpassable") if ig.game.getEntitiesByType(EntityMessage).length == 0
+      ig.game.record("#{@gateType}Gate", "unpassable", @difficulty) if ig.game.getEntitiesByType(EntityMessage).length == 0
       "The door won't budge./nYour powers of #{@gateType} are not yet strong enough."
 
 

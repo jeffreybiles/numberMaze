@@ -27,21 +27,22 @@ ig.module(
     analytics: null
 
     update: ->
-      if(@state == 'main')
-        @cameraFollow()
-      else if(@state == 'problem')
-        if(ig.input.state('accept'))
-          correct = @gate.checkAnswer()
-          timer = @getEntitiesByType( EntityTimer)[0]
-          if(correct)
-            @gate.reward()
-            @gate.kill()
-            timer.change(5)
-          else
-            timer.change(-5)
-          @state = 'main'
-      if(ig.input.state('save'))
-        @save()
+      switch @state
+        when 'main'
+          @cameraFollow()
+        when 'problem'
+          if(ig.input.state('accept'))
+            correct = @gate.checkAnswer()
+            timer = @getEntitiesByType( EntityTimer)[0]
+            if(correct)
+              @gate.reward()
+              @gate.kill()
+              timer.change(5)
+            else
+              timer.change(-5)
+            @state = 'main'
+
+      @save() if(ig.input.state('save'))
       @parent();
 
     cameraFollow: ->
@@ -95,11 +96,11 @@ ig.module(
     goToCenter: ->
       @changeLevel( LevelCenter , {x: 700, y: 700})
 
-    togglePause: ->
-      if (@state == 'pause')
-        @state = 'main'
-      else
-        @state = 'pause'
+    # togglePause: ->
+    #   if (@state == 'pause')
+    #     @state = 'main'
+    #   else
+    #     @state = 'pause'
 
     init: ->
       ig.input.bind( ig.KEY.S, 'save')
@@ -131,19 +132,23 @@ ig.module(
       ig.input.bind( ig.KEY.Y, 'yes')
       @load()
 
-    record: (category, action, value) ->
-      #the stats part is not working
-      # _gaq.push(['_trackEvent', category, action, @stats.toString()])
+    record: (category, action, label = "", value = null) ->
+      for category in ["addition", "subtraction", "multiplication", "division"]
+        label += "#{category}:#{ig.game.stats[category].level}  "
+      for category in ["money", "timeIncreases"]
+        label += "#{category}:#{ig.game.stats[category]}  "
+      _gaq.push(['_trackEvent', category, action, label, value])
 
     save: ->
       @storage.set('stats', @stats)
       @storage.set('switches', @switches)
 
     load: ->
-      if(@storage.isSet('switches'))
-        @switches = @storage.get('switches')
-      else
-        @switches = {introComplete: false}
+      @switches = if(@storage.isSet('switches'))
+                    @storage.get('switches')
+                  else
+                    {introComplete: false}
+
       if(@switches.introComplete)
         @stats = @storage.get('stats')
         @goToCenter()
