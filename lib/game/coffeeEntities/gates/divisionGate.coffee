@@ -17,6 +17,4 @@ ig.module('game.entities.gates.divisionGate').requires('game.entities.gates.gate
     equation: ->
       Math.floor(Math.random()*Math.pow(@difficulty + 1, 1.2))
 
-    failMessage: ->
-      "The door won't budge./nYour powers of division are not yet strong enough."
   )

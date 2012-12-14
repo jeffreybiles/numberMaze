@@ -17,6 +17,4 @@ ig.module('game.entities.gates.subtractionGate').requires('game.entities.gates.g
     equation: ->
       Math.floor(Math.random()*Math.pow(@difficulty + 1.5, 1.4))
 
-    failMessage: ->
-      "The door won't budge./nYour powers of subtraction are not yet strong enough."
   )

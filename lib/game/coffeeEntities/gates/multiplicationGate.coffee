@@ -16,6 +16,4 @@ ig.module('game.entities.gates.multiplicationGate').requires('game.entities.gate
     equation: ->
       Math.floor(Math.random()*Math.pow(@difficulty + 1, 1.2))
 
-    failMessage: ->
-      "The door won't budge./nYour powers of multiplication are not yet strong enough."
   )

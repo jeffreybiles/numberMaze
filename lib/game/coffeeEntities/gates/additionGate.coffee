@@ -16,6 +16,4 @@ ig.module('game.entities.gates.additionGate').requires('game.entities.gates.gate
     equation: ->
       Math.floor(Math.random()*Math.pow(@difficulty + 1.5, 1.4))
 
-    failMessage: ->
-      "The door won't budge./nYour powers of addition are not yet strong enough."
   )

@@ -14,7 +14,7 @@ ig.module(
     init: (message) ->
       @timer = new ig.Timer();
       @timer.set(@max())
-      ig.Timer.timeScale = 1.5
+      ig.Timer.timeScale = 1.2
       @pos = {x: ig.system.width/2, y: ig.system.height/2};
 
     update: ->
@@ -28,8 +28,8 @@ ig.module(
       @font.draw(@timeLeft(), ig.system.width - 100, 20, @centering)
 
     max: ->
-      console.log(ig.game.timeIncreases)
-      90 + 15*ig.game.timeIncreases
+      console.log(ig.game.stats.timeIncreases)
+      90 + 15*ig.game.stats.timeIncreases
 
     change: (amount) ->
       #make something here that calls attention to the amount
