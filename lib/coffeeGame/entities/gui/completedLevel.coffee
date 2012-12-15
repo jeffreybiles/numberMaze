@@ -1,20 +1,14 @@
 ig.module('game.entities.gui.completedLevel').requires(
-  'game.entities.gui.rectangle',
+  'game.entities.gui.screen',
   'game.entities.gui.textBox',
   'game.entities.gui.centeredTextBox'
 ).defines ->
 
-  window.EntityCompletedLevel = EntityRectangle.extend(
+  window.EntityCompletedLevel = EntityScreen.extend(
     init: (x, y, settings) ->
-      @parent(100, 100, settings)
-      @width = ig.system.width - 200
-      @height = ig.system.height - 200
-      @backgroundColor = '#ddd'
-      @borderColor = '#975'
-      @borderSize = 3
-      ig.game.state = 'paused'
-      ig.game.spawnEntity(EntityTextBox, 150, 150, {
-        width: ig.system.width - 300, height: ig.system.height - 400,
+      @parent(0, 0, settings)
+      ig.game.spawnEntity(EntityTextBox, 100, 100, {
+        width: ig.system.width - 200, height: ig.system.height - 250,
         backgroundColor: 'white', borderColor: 'black', borderSize: '2', zIndex: 10,
         text: "Blessings upon you, fair traveller. ~
               You have plumbed the depths of the labyrinth and found your treasure.
@@ -22,7 +16,7 @@ ig.module('game.entities.gui.completedLevel').requires(
               discovered the lost treasure of #{settings.id}."
         })
       @acceptBox = ig.game.spawnEntity(EntityCenteredTextBox,
-            ig.system.width/2 - 100, ig.system.height - 200, {
+            ig.system.width/2 - 100, ig.system.height - 100, {
             width: 200, height: 50, backgroundColor: 'white',
             borderColor: 'green', borderSize: '2', text: 'Accept', zIndex: 10})
       @acceptBox.onclick = ->
