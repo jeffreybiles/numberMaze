@@ -2,7 +2,9 @@ ig.module(
   'game.entities.dashboard'
 )
 .requires(
-  'impact.entity'
+  'impact.entity',
+  'game.entities.gui.guiImage',
+  'game.entities.gui.pauseScreen'
 )
 .defines ->
   window.EntityDashboard = ig.Entity.extend(
@@ -12,6 +14,8 @@ ig.module(
 
     init: ->
       @pos = {x: 5, y: 5}
+      pauseButton = ig.game.spawnEntity(EntityGuiImage, 850, 530, {fileName: "pause.png"})
+      pauseButton.onclick = -> ig.game.spawnEntity(EntityPauseScreen)
 
     draw: ->
       @font.draw("$" + ig.game.stats.money, @pos.x, @pos.y)

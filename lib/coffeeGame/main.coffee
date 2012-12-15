@@ -70,7 +70,7 @@ ig.module(
       ig.game.spawnEntity(EntityPlayer, @nextPlayerPosition.x, @nextPlayerPosition.y, {})
       @save();
       ig.game.spawnEntity(EntityDashboard)
-      if(@level != 'Center') then @timer = ig.game.spawnEntity(EntityTimer)
+      @timer = ig.game.spawnEntity(EntityTimer)
 
     changeLevel: (level, playerPosition) ->
       ig.game.loadLevelDeferred(level);
@@ -101,14 +101,6 @@ ig.module(
     goToCenter: ->
       @state = 'main'
       @changeLevel( LevelCenter , {x: 700, y: 700})
-
-    togglePause: ->
-      if (@state == 'pause')
-        @state = 'main'
-        ig.game.getEntitiesByType(EntityPauseScreen)[0].kill()
-      else
-        @state = 'pause'
-        ig.game.spawnEntity(EntityPauseScreen)
 
     init: ->
       ig.input.bind( ig.KEY.S, 'save')
