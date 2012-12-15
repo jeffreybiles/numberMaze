@@ -6,7 +6,6 @@ ig.module('game.entities.gui.creditsScreen').requires(
 
   window.EntityCreditsScreen = EntityScreen.extend(
     init: (x, y, settings) ->
-      console.log('spawning')
       @parent(0, 0, settings)
       textBox = ig.game.spawnEntity(EntityCenteredTextBox, ig.system.width/2 - 350, 50, {
         width: 700, height: 400,
