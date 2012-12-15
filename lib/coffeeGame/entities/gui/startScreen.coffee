@@ -1,7 +1,7 @@
 ig.module('game.entities.gui.startScreen').requires(
   'game.entities.gui.screen',
   'game.entities.gui.centeredTextBox',
-  'game.entities.gui.guiImage'
+  'game.entities.gui.creditsScreen'
 ).defines ->
 
   window.EntityStartScreen = EntityScreen.extend(
@@ -16,20 +16,22 @@ ig.module('game.entities.gui.startScreen').requires(
       startButton = ig.game.spawnEntity(EntityCenteredTextBox, 250, 500, {
         width: 200, height: 100, zIndex: 15, text: 'Start'
         })
-      startButton.onclick = => @kill()
+      startButton.onclick = => @startGame()
 
       creditsButton = ig.game.spawnEntity(EntityCenteredTextBox, 510, 500, {
         width: 200, height: 100, zIndex: 15, text: 'Credits'
         })
-
+      creditsButton.onclick = =>
+        ig.game.spawnEntity(EntityCreditsScreen, 0,0, {zIndex: 20, previous: 'EntityStartScreen'})
+        @kill()
 
       @children = [textBox, startButton, creditsButton]
 
     update: ->
       if(ig.input.pressed('accept'))
-        @kill()
+        @startGame()
 
-    kill: ->
+    startGame: ->
       ig.game.load()
-      @parent()
+      @kill()
   )

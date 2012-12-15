@@ -1,11 +1,10 @@
 ig.module('game.entities.gui.screen').requires(
   'game.entities.gui.rectangle',
-  'game.entities.gui.textBox',
-  'game.entities.gui.centeredTextBox'
 ).defines ->
-  children: []
   window.EntityScreen = EntityRectangle.extend(
+
     init: (x, y, settings) ->
+      @previous = settings.previous
       @parent(0, 0, settings)
       @width = ig.system.width
       @height = ig.system.height
@@ -16,5 +15,7 @@ ig.module('game.entities.gui.screen').requires(
 
     kill: ->
       child.kill() for child in @children
+      if @previous? then ig.game.spawnEntity(@previous)
       @parent()
+
   )

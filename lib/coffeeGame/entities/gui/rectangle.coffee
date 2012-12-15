@@ -14,9 +14,11 @@ ig.module('game.entities.gui.rectangle').requires('impact.entity').defines ->
         @y += @container.y
       @zIndex = settings.zIndex || 1
       ig.game.sortEntitiesDeferred()
+      @timer = new ig.Timer()
+      @timer.set(0.1)
 
     update: ->
-      if ig.input.pressed('click')
+      if ig.input.pressed('click') && @timer.delta() > 0
         if @x < ig.input.mouse.x < @x + @width
           if @y < ig.input.mouse.y < @y + @height
             @onclick()
