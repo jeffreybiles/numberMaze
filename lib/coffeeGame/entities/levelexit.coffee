@@ -22,4 +22,5 @@ ig.module('game.entities.levelexit')
         player = ig.game.getEntitiesByType(EntityPlayer)[0]
         player.kill()
         ig.game.changeLevel(level, @newPos)
+
   )

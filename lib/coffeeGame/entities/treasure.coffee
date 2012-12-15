@@ -18,18 +18,14 @@ ig.module(
         @used = ig.game.storage.get('treasure' + @id)
 
       if(@used)
-        amountUsed = Math.round(@amount/3);
+        amountGained = Math.round(@amount/3);
       else
-        amountUsed = @amount;
-      ig.game.stats.money += amountUsed;
+        amountGained = @amount;
+      ig.game.stats.money += amountGained;
 
-      message = ig.game.spawnEntity(EntityMessage, "+ $" + amountUsed + '/nGood job!')
-      message.pos.y += 50
       ig.game.storage.set('treasure' + @id, 'true')
+      ig.game.spawnEntity(EntityCompletedLevel,null, null, {money: amountGained, id: @id})
       @kill()
-      setTimeout( ->
-        ig.game.goToCenter();
-      , 1500)
 
     draw: ->
       @font.draw("#", @pos.x - @offset.x - ig.game.screen.x, @pos.y - @offset.y - ig.game.screen.y)

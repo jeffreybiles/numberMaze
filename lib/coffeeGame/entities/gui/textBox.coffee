@@ -26,32 +26,24 @@ ig.module('game.entities.gui.textBox').requires('game.entities.gui.rectangle').d
 
       for i in [0..words.length]
         word = words[i];
-        @thisLine = @thisLine.concat(word + ' ');
+        @thisLine = @thisLine.concat(word + ' ') unless word is ''
         lineWidth = @font.widthForString(@thisLine)
         if (word isnt lastWord)
-          console.log(word)
           nextWord = words[i + 1];
 
-          if (lineWidth + @font.widthForString(@thisLine) >= maxTextWidth)
+          if (lineWidth + @font.widthForString(nextWord) >= maxTextWidth)
             @addToAllLines(@thisLine);
-            console.log(@thisLine)
-
           else if (word is '~')
             @addToAllLines(' ');
-
           else if (nextWord is '~')
             @addToAllLines(@thisLine);
-            console.log(@thisLine)
 
         else
           @addToAllLines(@thisLine);
           return @allLines;
 
     addToAllLines: (text) ->
-      console.log(text)
       @allLines.push(text);
-      console.log(@allLines)
       @thisLine = '';
-      lineWidth = 0;
   )
 

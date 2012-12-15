@@ -18,6 +18,7 @@ ig.module('game.entities.gates.gate').requires(
 
     check: ->
       @parent()
+
       if ig.game.state == 'main'
         if @passable()
           ig.game.state = 'problem'

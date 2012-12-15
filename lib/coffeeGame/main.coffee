@@ -67,8 +67,6 @@ ig.module(
       @save();
       ig.game.spawnEntity(EntityDashboard)
       if(@level != 'Center') then @timer = ig.game.spawnEntity(EntityTimer)
-      ig.game.spawnEntity(EntityCompletedLevel)
-
 
     changeLevel: (level, playerPosition) ->
       ig.game.loadLevelDeferred(level);
@@ -97,6 +95,7 @@ ig.module(
       return requirements[level]
 
     goToCenter: ->
+      @state = 'main'
       @changeLevel( LevelCenter , {x: 700, y: 700})
 
     # togglePause: ->
@@ -141,7 +140,7 @@ ig.module(
         label += "#{category}:#{ig.game.stats[category].level}  "
       for category in ["money", "timeIncreases"]
         label += "#{category}:#{ig.game.stats[category]}  "
-      _gaq.push(['_trackEvent', category, action, label, value])
+      # _gaq.push(['_trackEvent', category, action, label, value])
 
     save: ->
       @storage.set('stats', @stats)
