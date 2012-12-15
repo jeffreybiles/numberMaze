@@ -16,6 +16,7 @@ ig.module('game.entities.gui.textBox').requires('game.entities.gui.rectangle').d
         line = text[i]
         @font.draw(line, @x, @y + i*@fontHeight, ig.Font.ALIGN.LEFT)
 
+    #this method taken from a blog post at http://liza.io/
     splitLines: (text,font,maxTextWidth) ->
       words = text.split(' ');
       lastWord = words[words.length - 1];

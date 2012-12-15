@@ -11,6 +11,7 @@ ig.module(
   'game.entities.timer',
   'game.entities.gui.rectangle',
   'game.entities.gui.completedLevel',
+  'game.entities.gui.pauseScreen',
 
   'game.levels.intro',
   'game.levels.center',
@@ -31,6 +32,8 @@ ig.module(
       switch @state
         when 'main'
           @cameraFollow()
+          console.log('in main')
+          if ig.input.pressed('pause') then console.log('pausing'); ig.game.spawnEntity(EntityPauseScreen)
         when 'problem'
           if(ig.input.state('accept'))
             correct = @gate.checkAnswer()
@@ -42,6 +45,8 @@ ig.module(
             else
               timer.change(-5)
             @state = 'main'
+        when 'paused'
+          null
 
       @save() if(ig.input.state('save'))
       @parent();
@@ -98,14 +103,17 @@ ig.module(
       @state = 'main'
       @changeLevel( LevelCenter , {x: 700, y: 700})
 
-    # togglePause: ->
-    #   if (@state == 'pause')
-    #     @state = 'main'
-    #   else
-    #     @state = 'pause'
+    togglePause: ->
+      if (@state == 'pause')
+        @state = 'main'
+        ig.game.getEntitiesByType(EntityPauseScreen)[0].kill()
+      else
+        @state = 'pause'
+        ig.game.spawnEntity(EntityPauseScreen)
 
     init: ->
       ig.input.bind( ig.KEY.S, 'save')
+      ig.input.bind( ig.KEY.P, 'pause')
       ig.input.bind( ig.KEY.ENTER, 'accept' );
       ig.input.bind( ig.KEY.UP_ARROW, 'up' );
       ig.input.bind( ig.KEY.DOWN_ARROW, 'down' );
@@ -140,7 +148,7 @@ ig.module(
         label += "#{category}:#{ig.game.stats[category].level}  "
       for category in ["money", "timeIncreases"]
         label += "#{category}:#{ig.game.stats[category]}  "
-      # _gaq.push(['_trackEvent', category, action, label, value])
+      _gaq.push(['_trackEvent', category, action, label, value])
 
     save: ->
       @storage.set('stats', @stats)

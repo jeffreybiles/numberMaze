@@ -12,6 +12,7 @@ ig.module('game.entities.gui.completedLevel').requires(
       @backgroundColor = '#ddd'
       @borderColor = '#975'
       @borderSize = 3
+      ig.game.state = 'paused'
       ig.game.spawnEntity(EntityTextBox, 150, 150, {
         width: ig.system.width - 300, height: ig.system.height - 400,
         backgroundColor: 'white', borderColor: 'black', borderSize: '2', zIndex: 10,

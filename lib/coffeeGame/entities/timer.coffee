@@ -18,6 +18,10 @@ ig.module(
       @pos = {x: ig.system.width/2, y: ig.system.height/2};
 
     update: ->
+      if ig.game.state == 'paused'
+        @timer.pause()
+      else
+        @timer.unpause()
       ig.game.goToCenter() if @timeLeft() <= 0
       @parent()
 
