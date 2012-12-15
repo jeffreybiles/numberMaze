@@ -1,5 +1,6 @@
 ig.module('game.entities.gui.rectangle').requires('impact.entity').defines ->
   window.EntityRectangle = ig.Entity.extend(
+
     init: (@x, @y, settings) ->
       @width = settings.width
       @height = settings.height
