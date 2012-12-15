@@ -32,8 +32,7 @@ ig.module(
       switch @state
         when 'main'
           @cameraFollow()
-          console.log('in main')
-          if ig.input.pressed('pause') then console.log('pausing'); ig.game.spawnEntity(EntityPauseScreen)
+          if ig.input.pressed('pause') then ig.game.spawnEntity(EntityPauseScreen)
         when 'problem'
           if(ig.input.state('accept'))
             correct = @gate.checkAnswer()

@@ -1,6 +1,7 @@
 ig.module('game.entities.gui.pauseScreen').requires(
   'game.entities.gui.screen',
   'game.entities.gui.textBox',
+  'game.entities.gui.guiImage'
 ).defines ->
 
   window.EntityPauseScreen = EntityScreen.extend(
@@ -11,7 +12,9 @@ ig.module('game.entities.gui.pauseScreen').requires(
         backgroundColor: 'white', borderColor: 'black', borderSize: '2', zIndex: 10,
         text: "Pause"
         })]
-
+      @children.push(ig.game.spawnEntity(EntityGuiImage, 100, 200, {
+        fileName: "pause.png", zIndex: 15
+        }))
     update: ->
       @parent()
       if ig.input.pressed('accept')
