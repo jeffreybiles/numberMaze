@@ -12,6 +12,7 @@ ig.module(
   'game.entities.gui.rectangle',
   'game.entities.gui.completedLevel',
   'game.entities.gui.pauseScreen',
+  'game.entities.gui.startScreen',
 
   'game.levels.intro',
   'game.levels.center',
@@ -132,7 +133,7 @@ ig.module(
       ig.input.bind( ig.KEY.NUMPAD_9, '9')
       ig.input.bind( ig.KEY.Y, 'yes')
       ig.input.bind(ig.KEY.MOUSE1, 'click')
-      @load()
+      @spawnEntity(EntityStartScreen)
 
     record: (category, action, label = "", value = null) ->
       for category in ["addition", "subtraction", "multiplication", "division"]

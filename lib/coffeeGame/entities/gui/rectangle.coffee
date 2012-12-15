@@ -4,9 +4,9 @@ ig.module('game.entities.gui.rectangle').requires('impact.entity').defines ->
     init: (@x, @y, settings) ->
       @width = settings.width
       @height = settings.height
-      @backgroundColor = settings.backgroundColor
-      @borderColor = settings.borderColor
-      @borderSize = parseInt(settings.borderSize)
+      @backgroundColor = settings.backgroundColor || 'white'
+      @borderColor = settings.borderColor || 'black'
+      @borderSize = parseInt(settings.borderSize) || 2
       @container = settings.container
       @ctx = ig.system.context
       if @container
