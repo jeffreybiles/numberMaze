@@ -117,6 +117,8 @@ ig.module(
       ig.input.bind( ig.KEY.NUMPAD_9, '9')
       ig.input.bind( ig.KEY.Y, 'yes')
       ig.input.bind( ig.KEY.N, 'no')
+      ig.input.bind( ig.KEY.BACKSPACE, 'backspace')
+      ig.input.bind( ig.KEY.DELETE, 'backspace')
       ig.input.bind(ig.KEY.MOUSE1, 'click')
       @spawnEntity(EntityStartScreen)
 

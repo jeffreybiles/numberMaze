@@ -20,14 +20,23 @@ ig.module('game.entities.gui.problemInterface').requires(
         column = (i-1) % 3
         @makeNumberButton(@x + @padding + column*(@buttonWidth + 10),
                           @y + @padding + row*(@buttonHeight + 10), i)
-      @makeNumberButton(@x + @padding + 1*(@buttonWidth + 10),
+      @makeNumberButton(@x + @padding + 0*(@buttonWidth + 10),
                         @y + @padding + 3*(@buttonHeight + 10), 0)
+      backButton = ig.game.spawnEntity(EntityCenteredTextBox,
+                    @x + @padding + @buttonWidth + 10, @y + @padding + 3*(@buttonWidth + 10),
+                    {width: @buttonWidth*2 + 10, height: @buttonHeight, zIndex: 15, text: "<- Delete"}
+              )
+      backButton.onclick = => @backspace()
+      @children.push(backButton)
+
       acceptButton = ig.game.spawnEntity(EntityCenteredTextBox, @textCenter - 100, 400, {
         width: 200, height: 100, text: 'Answer It!', zIndex: 15
         })
       acceptButton.onclick = =>
         @delegate.resolve()
       @children.push(acceptButton)
+
+    backspace: -> @playerAnswer = @playerAnswer[0..-2]
 
     makeNumberButton: (x, y, number)->
       button = ig.game.spawnEntity(EntityCenteredTextBox, x, y, {
@@ -36,6 +45,10 @@ ig.module('game.entities.gui.problemInterface').requires(
       button.onclick = =>
         @playerAnswer += "#{number}"
       @children.push(button)
+
+    update: ->
+      @parent()
+      if ig.input.pressed('backspace') then @backspace()
 
     draw: ->
       @parent()
