@@ -29,12 +29,11 @@ ig.module(
       Math.round(-1*@timer.delta())
 
     draw: ->
-      @font.draw(@timeLeft(), ig.system.width - 100, 20, @centering)
+      @font.draw(@timeLeft(), 860, 20)
 
     max: ->
       90 + 15*ig.game.stats.timeIncreases
 
     change: (amount) ->
-      #make something here that calls attention to the amount
       @timer.set(-@timer.delta() + amount)
   )

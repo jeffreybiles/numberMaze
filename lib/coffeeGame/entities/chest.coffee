@@ -30,6 +30,7 @@ ig.module(
         message = ig.game.spawnEntity(EntityMessage, "+ $#{@amount}")
         message.pos.y += 50
       ig.game.storage.set("chest#{@id}", true)
+      ig.game.record("chest", @id, null, @amount)
       @kill()
 
     draw: ->

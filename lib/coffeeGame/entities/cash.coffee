@@ -17,6 +17,7 @@ ig.module(
       console.log('you got ' + @amount)
       message = ig.game.spawnEntity(EntityMessage, "+ $" + @amount)
       message.pos.y += 50
+      ig.game.record('cash', @amount, null, @amount)
       @kill()
 
     draw: ->
