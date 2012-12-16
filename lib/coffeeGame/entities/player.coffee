@@ -25,20 +25,27 @@ ig.module(
 
     update: ->
       if (ig.game.state == 'main')
-        if( ig.input.state('up') )
+        @vel.x = 0
+        @vel.y = 0
+        if ig.input.state('click')
+          dx = ig.input.mouse.x - ig.system.width/2
+          dy = ig.input.mouse.y - ig.system.height/2
+          if Math.abs(dx) > Math.abs(dy)
+            @vel.x = Math.abs(dx)/dx * @moveSpeed
+          else
+            @vel.y = Math.abs(dy)/dy * @moveSpeed
+
+        else if( ig.input.state('up') )
           @vel.y = -@moveSpeed;
-          @vel.x = 0
         else if( ig.input.state('down') )
-          @vel.x = 0
           @vel.y = @moveSpeed;
         else
-          @vel.y = 0
           if(ig.input.state('left'))
             @vel.x = -@moveSpeed
           else if( ig.input.state('right'))
             @vel.x = @moveSpeed
-          else
-            @vel.x = 0
+
+
 
         @parent();
   )
