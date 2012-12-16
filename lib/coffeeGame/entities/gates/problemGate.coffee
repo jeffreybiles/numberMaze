@@ -41,15 +41,6 @@ ig.module('game.entities.gates.problemGate').requires('game.entities.gates.gate'
       stats.money += moneyGained
       @notice += "+ $#{moneyGained}/n"
 
-    update: ->
-      for i in [0..9]
-        if ig.input.pressed(i.toString())
-          @interface.playerAnswer += i
-      if ig.game.state == 'problem'
-        if(ig.input.state('accept'))
-          @resolve()
-      @parent()
-
     resolve: ->
       correct = @checkAnswer()
       timer = ig.game.getEntitiesByType( EntityTimer)[0]

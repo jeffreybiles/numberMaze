@@ -32,8 +32,7 @@ ig.module('game.entities.gui.problemInterface').requires(
       acceptButton = ig.game.spawnEntity(EntityCenteredTextBox, @textCenter - 100, 400, {
         width: 200, height: 100, text: 'Answer It!', zIndex: 15
         })
-      acceptButton.onclick = =>
-        @delegate.resolve()
+      acceptButton.onclick = => @delegate.resolve()
       @children.push(acceptButton)
 
     backspace: -> @playerAnswer = @playerAnswer[0..-2]
@@ -47,8 +46,12 @@ ig.module('game.entities.gui.problemInterface').requires(
       @children.push(button)
 
     update: ->
-      @parent()
+      for i in [0..9]
+        if ig.input.pressed(i.toString())
+          @playerAnswer += i
+      if(ig.input.state('accept')) then @delegate.resolve()
       if ig.input.pressed('backspace') then @backspace()
+      @parent()
 
     draw: ->
       @parent()
