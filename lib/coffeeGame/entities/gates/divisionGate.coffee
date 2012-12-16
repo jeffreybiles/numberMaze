@@ -1,5 +1,5 @@
-ig.module('game.entities.gates.divisionGate').requires('game.entities.gates.gate').defines ->
-  window.EntityDivisionGate = EntityGate.extend(
+ig.module('game.entities.gates.divisionGate').requires('game.entities.gates.problemGate').defines ->
+  window.EntityDivisionGate = EntityProblemGate.extend(
     gateType: 'division'
     init: ( x, y, settings ) ->
       @animSheet =  new ig.AnimationSheet( 'media/tileset.png', @spriteSize.x, @spriteSize.y );

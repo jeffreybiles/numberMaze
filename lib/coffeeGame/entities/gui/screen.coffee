@@ -13,9 +13,5 @@ ig.module('game.entities.gui.screen').requires(
       @borderSize = 3
       ig.game.state = 'paused'
 
-    kill: ->
-      child.kill() for child in @children
-      if @previous? then ig.game.spawnEntity(@previous)
-      @parent()
 
   )

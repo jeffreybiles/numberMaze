@@ -13,6 +13,7 @@ ig.module(
   'game.entities.gui.completedLevel',
   'game.entities.gui.pauseScreen',
   'game.entities.gui.startScreen',
+  'game.entities.gui.problemInterface',
 
   'game.levels.intro',
   'game.levels.center',
@@ -44,6 +45,7 @@ ig.module(
               timer.change(5)
             else
               timer.change(-5)
+            @gate.interface.kill()
             @state = 'main'
         when 'paused'
           null
@@ -76,14 +78,6 @@ ig.module(
     changeLevel: (level, playerPosition) ->
       ig.game.loadLevelDeferred(level);
       @nextPlayerPosition = playerPosition;
-
-    draw: ->
-      @parent();
-      if(@state == 'problem')
-        x = ig.system.width/2;
-        y = ig.system.height/2 - 20;
-        @font.draw(@gate.question, x, y, ig.Font.ALIGN.CENTER)
-        @font.draw(@gate.player_answer, x, y + 70, ig.Font.ALIGN.CENTER)
 
     experienceRequired: (level) ->
       requirements = {

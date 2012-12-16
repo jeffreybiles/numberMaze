@@ -1,5 +1,6 @@
 ig.module('game.entities.gui.rectangle').requires('impact.entity').defines ->
   window.EntityRectangle = ig.Entity.extend(
+    children: []
 
     init: (@x, @y, settings) ->
       @width = settings.width
@@ -7,7 +8,6 @@ ig.module('game.entities.gui.rectangle').requires('impact.entity').defines ->
       @backgroundColor = settings.backgroundColor || 'white'
       @borderColor = settings.borderColor || 'black'
       @borderSize = parseInt(settings.borderSize) || 2
-      @container = settings.container
       @ctx = ig.system.context
       if @container
         @x += @container.x
@@ -25,6 +25,11 @@ ig.module('game.entities.gui.rectangle').requires('impact.entity').defines ->
 
     onclick: ->
       console.log('hello')
+
+    kill: ->
+      child.kill() for child in @children
+      if @previous? then ig.game.spawnEntity(@previous)
+      @parent()
 
     draw: ->
       @ctx.fillStyle = @borderColor;

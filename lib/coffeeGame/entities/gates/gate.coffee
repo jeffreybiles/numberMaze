@@ -1,8 +1,10 @@
 ig.module('game.entities.gates.gate').requires(
   'impact.entity',
-  'game.entities.message'
+  'game.entities.message',
+  'game.entities.gui.problemInterface'
 ).defines ->
   window.EntityGate = ig.Entity.extend(
+    interface: null
     spriteSize: {x: 48, y: 48}
     size: {x: 48, y: 48}
     difficulty: 1
@@ -21,63 +23,18 @@ ig.module('game.entities.gates.gate').requires(
 
       if ig.game.state == 'main'
         if @passable()
-          ig.game.state = 'problem'
-          ig.game.gate = @
-          @makeQuestion()
-          @player_answer = ""
+          @makeChallenge()
         else
           ig.game.spawnEntity(EntityMessage, @failMessage())
 
-    passable: ->
-      @difficulty <= ig.game.stats[@gateType].level
+    makeChallenge: ->
+      ig.game.state = 'problem'
+      ig.game.gate = @
+      @makeQuestion()
 
     failMessage: ->
       ig.game.record("#{@gateType}Gate", "unpassable", @difficulty) if ig.game.getEntitiesByType(EntityMessage).length == 0
       "The door won't budge./nYour powers of #{@gateType} are not yet strong enough."
-
-
-    checkAnswer: ->
-      correct = @correct_answer.toString() == @player_answer
-      ig.game.record("#{@gateType}Gate",
-        if correct then "correct" else "wrong",
-        @difficulty)
-      correct
-
-    update: ->
-      for i in [0..9]
-        if ig.input.pressed(i.toString())
-          @player_answer = @player_answer + i
-      @parent()
-
-    reward: ->
-      @notice = ""
-      stats = ig.game.stats;
-      @gainMoney(stats);
-      @gainXp(stats);
-
-      message = ig.game.spawnEntity(EntityMessage, @notice)
-      message.pos.y += 50
-
-      ig.game.save();
-
-
-    gainXp: (stats) ->
-      statRaised = stats[@gateType];
-      xpGained = Math.floor(Math.pow(@difficulty + 1, 1.5) * 10)
-      statRaised.experience += xpGained
-
-      if (statRaised.experience >= ig.game.experienceRequired(statRaised.level))
-        statRaised.experience = 0;
-        statRaised.level += 1
-        @notice += "LEVEL UP!\n"
-        @notice += "level #{statRaised.level} #{@gateType}"
-      else
-        @notice += "+ #{xpGained}xp"
-
-    gainMoney: (stats) ->
-      moneyGained = Math.floor(Math.pow(@difficulty + 1, 1.7) * 1);
-      stats.money += moneyGained
-      @notice += "+ $#{moneyGained}/n"
 
     draw: ->
       ctx = ig.system.context;

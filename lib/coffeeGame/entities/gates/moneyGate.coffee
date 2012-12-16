@@ -1,3 +1,4 @@
+# This is currently broken.  Fix soon.
 ig.module('game.entities.gates.moneyGate').requires('game.entities.gates.gate').defines ->
   window.EntityMoneyGate = EntityGate.extend(
     gateType: 'money'

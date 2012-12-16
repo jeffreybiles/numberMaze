@@ -1,7 +1,6 @@
 ig.module('game.entities.gui.textBox').requires('game.entities.gui.rectangle').defines ->
   window.EntityTextBox = EntityRectangle.extend(
     font: new ig.Font('media/helvetica24000.png')
-
     init: (x, y, settings) ->
       @parent(x, y, settings)
       @text = settings.text
@@ -44,7 +43,7 @@ ig.module('game.entities.gui.textBox').requires('game.entities.gui.rectangle').d
           return @allLines;
 
     addToAllLines: (text) ->
-      @allLines.push(text);
+      @allLines.push(text[0..-2]);
       @thisLine = '';
   )
 

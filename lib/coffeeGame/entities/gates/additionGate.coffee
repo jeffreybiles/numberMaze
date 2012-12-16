@@ -1,5 +1,5 @@
-ig.module('game.entities.gates.additionGate').requires('game.entities.gates.gate').defines ->
-  window.EntityAdditionGate = EntityGate.extend(
+ig.module('game.entities.gates.additionGate').requires('game.entities.gates.problemGate').defines ->
+  window.EntityAdditionGate = EntityProblemGate.extend(
     gateType: 'addition'
     init: ( x, y, settings ) ->
       @animSheet =  new ig.AnimationSheet( 'media/tileset.png', @spriteSize.x, @spriteSize.y );

@@ -1,5 +1,5 @@
-ig.module('game.entities.gates.subtractionGate').requires('game.entities.gates.gate').defines ->
-  window.EntitySubtractionGate = EntityGate.extend(
+ig.module('game.entities.gates.subtractionGate').requires('game.entities.gates.problemGate').defines ->
+  window.EntitySubtractionGate = EntityProblemGate.extend(
     gateType: 'subtraction'
 
     init: ( x, y, settings ) ->
