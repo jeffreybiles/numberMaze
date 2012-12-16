@@ -36,9 +36,7 @@ ig.module(
           @cameraFollow()
           if ig.input.pressed('pause') then ig.game.spawnEntity(EntityPauseScreen)
         when 'problem'
-          # if(ig.input.state('accept'))
-          #   #This should be pulled out to a method which can then be called when the button is hit
-          #   @gate.resolve()
+          null
         when 'paused'
           null
 

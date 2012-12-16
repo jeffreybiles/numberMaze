@@ -6,6 +6,7 @@ ig.module('game.entities.gates.problemGate').requires('game.entities.gates.gate'
       @interface = ig.game.spawnEntity(EntityProblemInterface,
         null, null, {question: @question}
         )
+      @interface.delegate = @
 
     passable: ->
       @difficulty <= ig.game.stats[@gateType].level

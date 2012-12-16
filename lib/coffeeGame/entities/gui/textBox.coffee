@@ -1,9 +1,9 @@
 ig.module('game.entities.gui.textBox').requires('game.entities.gui.rectangle').defines ->
   window.EntityTextBox = EntityRectangle.extend(
-    font: new ig.Font('media/helvetica24000.png')
     init: (x, y, settings) ->
       @parent(x, y, settings)
       @text = settings.text
+      @font = settings.font || new ig.Font('media/helvetica24000.png')
       @splitLines(@text, @font, @width)
       @fontHeight = @font.height*4/5
     draw: ->
