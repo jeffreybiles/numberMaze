@@ -36,17 +36,9 @@ ig.module(
           @cameraFollow()
           if ig.input.pressed('pause') then ig.game.spawnEntity(EntityPauseScreen)
         when 'problem'
-          if(ig.input.state('accept'))
-            correct = @gate.checkAnswer()
-            timer = @getEntitiesByType( EntityTimer)[0]
-            if(correct)
-              @gate.reward()
-              @gate.kill()
-              timer.change(5)
-            else
-              timer.change(-5)
-            @gate.interface.kill()
-            @state = 'main'
+          # if(ig.input.state('accept'))
+          #   #This should be pulled out to a method which can then be called when the button is hit
+          #   @gate.resolve()
         when 'paused'
           null
 
@@ -126,6 +118,7 @@ ig.module(
       ig.input.bind( ig.KEY.NUMPAD_8, '8')
       ig.input.bind( ig.KEY.NUMPAD_9, '9')
       ig.input.bind( ig.KEY.Y, 'yes')
+      ig.input.bind( ig.KEY.N, 'no')
       ig.input.bind(ig.KEY.MOUSE1, 'click')
       @spawnEntity(EntityStartScreen)
 

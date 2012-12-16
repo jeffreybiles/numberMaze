@@ -36,6 +36,10 @@ ig.module('game.entities.gates.gate').requires(
       ig.game.record("#{@gateType}Gate", "unpassable", @difficulty) if ig.game.getEntitiesByType(EntityMessage).length == 0
       "The door won't budge./nYour powers of #{@gateType} are not yet strong enough."
 
+    resolve: ->
+      @interface.kill()
+      ig.game.state = 'main'
+
     draw: ->
       ctx = ig.system.context;
       ctx.save();

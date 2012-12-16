@@ -1,5 +1,8 @@
 # This is currently broken.  Fix soon.
-ig.module('game.entities.gates.moneyGate').requires('game.entities.gates.gate').defines ->
+ig.module('game.entities.gates.moneyGate').requires(
+  'game.entities.gates.gate',
+  'game.entities.gui.openLevel'
+).defines ->
   window.EntityMoneyGate = EntityGate.extend(
     gateType: 'money'
     amount: 1
@@ -18,23 +21,29 @@ ig.module('game.entities.gates.moneyGate').requires('game.entities.gates.gate').
       else
         @paid = false
 
-    makeQuestion: ->
-      @question = "Press 'y' to unlock for $#{@amount}"
-      @correct_answer = "y"
+    makeChallenge: ->
+      @parent()
+      @interface = ig.game.spawnEntity(EntityOpenLevel, null, null, {amount: @amount})
 
+    makeQuestion: ->
 
     reward: ->
       ig.game.stats.money -= @amount
       ig.game.storage.set("money#{@id}")
       ig.game.save()
+      @kill()
 
     passable: ->
       ig.game.stats.money >= @amount
 
     update: ->
       if @paid == null then @killIfAlreadyPaid()
-      if ig.input.pressed('yes')
-        @player_answer = @player_answer + 'y'
+      if @interface?
+        if ig.input.pressed('yes') || @interface.playerAnswer == 'y'
+          @reward()
+          @resolve()
+        else if ig.input.pressed('no') || @interface.playerAnswer == 'n'
+          @resolve()
       @parent()
 
     failMessage: ->

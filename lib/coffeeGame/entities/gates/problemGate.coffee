@@ -44,6 +44,20 @@ ig.module('game.entities.gates.problemGate').requires('game.entities.gates.gate'
       for i in [0..9]
         if ig.input.pressed(i.toString())
           @interface.playerAnswer += i
+      if ig.game.state == 'problem'
+        if(ig.input.state('accept'))
+          @resolve()
+      @parent()
+
+    resolve: ->
+      correct = @checkAnswer()
+      timer = ig.game.getEntitiesByType( EntityTimer)[0]
+      if(correct)
+        @reward()
+        @kill()
+        timer.change(5)
+      else
+        timer.change(-5)
       @parent()
 
     checkAnswer: ->
