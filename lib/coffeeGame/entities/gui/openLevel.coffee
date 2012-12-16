@@ -16,14 +16,17 @@ ig.module('game.entities.gui.openLevel').requires(
       yesButton = ig.game.spawnEntity(EntityCenteredTextBox, 530, 250, {
           width: 230, height: 100, text: 'Yes (y)', zIndex: 15
         })
-      yesButton.onclick = =>
-        @playerAnswer = 'y'
+      yesButton.onclick = => @delegate.yes()
 
       noButton = ig.game.spawnEntity(EntityCenteredTextBox, 200, 250, {
         width: 230, height: 100, text: 'No (n)', zIndex: 15
         })
-      noButton.onclick = =>
-        @playerAnswer = 'n'
+      noButton.onclick = => @delegate.no()
 
       @children = [textButton, yesButton, noButton]
+
+    update: ->
+        if ig.input.pressed('yes') then @delegate.yes()
+        if ig.input.pressed('no') then @delegate.no()
+
   )

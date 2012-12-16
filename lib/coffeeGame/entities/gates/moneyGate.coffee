@@ -24,6 +24,7 @@ ig.module('game.entities.gates.moneyGate').requires(
     makeChallenge: ->
       @parent()
       @interface = ig.game.spawnEntity(EntityOpenLevel, null, null, {amount: @amount})
+      @interface.delegate = @
 
     makeQuestion: ->
 
@@ -38,13 +39,14 @@ ig.module('game.entities.gates.moneyGate').requires(
 
     update: ->
       if @paid == null then @killIfAlreadyPaid()
-      if @interface?
-        if ig.input.pressed('yes') || @interface.playerAnswer == 'y'
-          @reward()
-          @resolve()
-        else if ig.input.pressed('no') || @interface.playerAnswer == 'n'
-          @resolve()
       @parent()
+
+    yes: ->
+      @reward()
+      @resolve()
+
+    no: ->
+      @resolve()
 
     failMessage: ->
       "You do not have enough money.  \nCome back when you have $#{@amount}"
