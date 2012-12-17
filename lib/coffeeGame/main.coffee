@@ -30,6 +30,7 @@ ig.module(
     state: 'main'
     gate: null
     level: null
+    timer: false
 
     update: ->
       switch @state
@@ -64,11 +65,14 @@ ig.module(
       ig.game.spawnEntity(EntityPlayer, @nextPlayerPosition.x, @nextPlayerPosition.y, {})
       @save();
       ig.game.spawnEntity(EntityDashboard)
-      @timer = ig.game.spawnEntity(EntityTimer)
+      @timer = ig.game.spawnEntity(EntityTimer) if @timer
 
-    changeLevel: (level, playerPosition) ->
+    changeLevel: (levelName, playerPosition) ->
+      level = ig.global['Level'+levelName]
+
       ig.game.loadLevelDeferred(level);
       @nextPlayerPosition = playerPosition;
+      @timer = levelName != 'Center' && levelName != 'Intro'
 
     experienceRequired: (level) ->
       requirements = {
@@ -86,7 +90,7 @@ ig.module(
 
     goToCenter: ->
       @state = 'main'
-      @changeLevel( LevelCenter , {x: 700, y: 700})
+      @changeLevel( 'Center' , {x: 700, y: 700})
 
     init: ->
       ig.input.bind( ig.KEY.S, 'save')
