@@ -24,7 +24,7 @@ ig.module(
       ig.game.stats.money += amountGained;
 
       ig.game.storage.set('treasure' + @id, 'true')
-      ig.game.record('treasure', "#{@id} #{@user}", null, @amountGained)
+      ig.game.record('treasure', "#{@id} #{@used}", null, @amountGained)
       ig.game.spawnEntity(EntityCompletedLevel,null, null, {money: amountGained, id: @id})
       @kill()
 

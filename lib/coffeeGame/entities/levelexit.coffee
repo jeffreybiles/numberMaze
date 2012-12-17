@@ -17,7 +17,7 @@ ig.module('game.entities.levelexit')
 
     nextLevel: ->
       if( @level )
-        ig.game.record("level", @level)
+        ig.game.record("level", "#{@level}")
         level = ig.global['Level'+@level]
         player = ig.game.getEntitiesByType(EntityPlayer)[0]
         player.kill()
