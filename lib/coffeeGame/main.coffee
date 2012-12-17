@@ -128,7 +128,7 @@ ig.module(
       for item in ["money", "timeIncreases"]
         label += "#{item}:#{ig.game.stats[item]}  "
       console.log("About to track", category, action, label, value)
-      # _gaq.push(['_trackEvent', category, action, label, value])
+      _gaq.push(['_trackEvent', category, action, label, value])
 
     save: ->
       @storage.set('stats', @stats)
