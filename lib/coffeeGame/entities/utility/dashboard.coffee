@@ -1,5 +1,5 @@
 ig.module(
-  'game.entities.dashboard'
+  'game.entities.utility.dashboard'
 )
 .requires(
   'impact.entity',

@@ -1,6 +1,6 @@
 ig.module('game.entities.gates.gate').requires(
   'impact.entity',
-  'game.entities.message',
+  'game.entities.utility.message',
   'game.entities.gui.problemInterface'
 ).defines ->
   window.EntityGate = ig.Entity.extend(

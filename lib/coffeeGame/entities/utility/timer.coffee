@@ -1,5 +1,5 @@
 ig.module(
-  'game.entities.timer'
+  'game.entities.utility.timer'
 )
 .requires(
   'impact.entity'

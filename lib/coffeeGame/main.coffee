@@ -6,9 +6,9 @@ ig.module(
   'impact.font',
   'plugins.impact-storage',
 
-  'game.entities.dashboard',
+  'game.entities.utility.dashboard',
+  'game.entities.utility.timer',
   'game.entities.player',
-  'game.entities.timer',
   'game.entities.gui.rectangle',
   'game.entities.gui.completedLevel',
   'game.entities.gui.pauseScreen',
@@ -19,7 +19,8 @@ ig.module(
   'game.levels.center',
   'game.levels.1',
   'game.levels.2',
-  'game.levels.3'
+  'game.levels.3',
+  'game.levels.4'
 )
 .defines ->
 

@@ -3,7 +3,7 @@ ig.module(
 )
 .requires(
   'impact.entity',
-  'game.entities.message'
+  'game.entities.utility.message'
 )
 .defines ->
   window.EntityMoneyGranter = ig.Entity.extend(
@@ -22,5 +22,5 @@ ig.module(
       @baseline()
 
     baseline: ->
-      Math.round(Math.pow(1.4, @path + 1))
+      Math.round(Math.pow(1.6, @path + 1))
   )

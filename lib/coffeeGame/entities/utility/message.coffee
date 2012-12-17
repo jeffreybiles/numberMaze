@@ -1,5 +1,5 @@
 ig.module(
-  'game.entities.message'
+  'game.entities.utility.message'
 )
 .requires(
   'impact.entity'
