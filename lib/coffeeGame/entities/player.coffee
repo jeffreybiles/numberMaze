@@ -16,8 +16,7 @@ ig.module(
     offset: {x: 8, y:8}
     animSheet: new ig.AnimationSheet( 'media/puck.png', 48, 48 )
 
-    moveSpeed: 140
-    maxVel: {x: 200, y:200}
+    moveSpeed: 100
 
     init: ( x, y, settings ) ->
       @parent( x, y, settings );
