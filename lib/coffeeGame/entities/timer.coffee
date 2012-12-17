@@ -2,11 +2,13 @@ ig.module(
   'game.entities.timer'
 )
 .requires(
-  'impact.entity'
+  'impact.entity',
+  'impact.font',
+  'plugins.font'
 )
 .defines ->
   window.EntityTimer = ig.Entity.extend(
-    font: new ig.Font( 'media/helvetica30EEE.png' )
+    font: new Font( 'bold 30px Helvetica' )
     centering: ig.Font.ALIGN.CENTER
     lifetime: 1
     timer: null
@@ -29,7 +31,7 @@ ig.module(
       Math.round(-1*@timer.delta())
 
     draw: ->
-      @font.draw(@timeLeft(), 860, 20)
+      @font.draw(@timeLeft(), 860, 20, 'left', '#EEE')
 
     max: ->
       90 + 15*ig.game.stats.timeIncreases
