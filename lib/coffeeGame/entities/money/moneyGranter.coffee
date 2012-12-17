@@ -22,5 +22,5 @@ ig.module(
       @baseline()
 
     baseline: ->
-      Math.pow(1.4, @path)
+      Math.round(Math.pow(1.4, @path + 1))
   )

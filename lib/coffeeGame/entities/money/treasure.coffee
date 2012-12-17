@@ -16,7 +16,7 @@ ig.module(
       @parent()
       ig.game.storage.set('treasure' + @id, 'true')
       ig.game.record('treasure', "#{@id} #{@used}", null, @amountGained)
-      ig.game.spawnEntity(EntityCompletedLevel,null, null, {money: @amount, id: @id})
+      ig.game.spawnEntity(EntityCompletedLevel,null, null, {money: @amount(), id: @id})
 
     amount: ->
       if @used
