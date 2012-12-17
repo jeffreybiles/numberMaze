@@ -1,17 +1,13 @@
 ig.module(
-  'game.entities.chest'
+  'game.entities.money.chest'
 )
 .requires(
-  'impact.entity'
+  'game.entities.money.moneyGranter'
 )
 .defines ->
-  window.EntityChest = ig.Entity.extend(
-    amount: 1
-    type: 'money'
+  window.EntityChest = EntityMoneyGranter.extend(
+    type: 'chest'
     id: null
-    size: {x: 48, y: 48}
-    font: new ig.Font( 'media/helvetica64EEE.png' )
-    checkAgainst: ig.Entity.TYPE.A
     used: null
 
     killIfAlreadyUsed: ->
@@ -25,13 +21,12 @@ ig.module(
         @killIfAlreadyUsed()
 
     check: ->
-      if(@type == 'money')
-        ig.game.stats.money += @amount;
-        message = ig.game.spawnEntity(EntityMessage, "+ $#{@amount}")
-        message.pos.y += 50
+      @parent()
       ig.game.storage.set("chest#{@id}", true)
       ig.game.record("chest", @id, null, @amount)
-      @kill()
+
+    amount: ->
+      @baseline() * 30
 
     draw: ->
       @font.draw("#", @pos.x - @offset.x - ig.game.screen.x, @pos.y - @offset.y - ig.game.screen.y)
