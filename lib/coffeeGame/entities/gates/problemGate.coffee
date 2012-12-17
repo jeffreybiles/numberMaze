@@ -54,9 +54,8 @@ ig.module('game.entities.gates.problemGate').requires('game.entities.gates.gate'
 
     checkAnswer: ->
       correct = @correct_answer.toString() == @interface.playerAnswer
-      ig.game.record("#{@gateType}Gate",
-        if correct then "correct" else "wrong",
-        @difficulty)
+      correctString = if correct then "correct" else "wrong"
+      ig.game.record("#{@gateType}Gate", correctString, null, @difficulty)
       correct
 
   )

@@ -123,10 +123,11 @@ ig.module(
       @spawnEntity(EntityStartScreen)
 
     record: (category, action, label = "", value = null) ->
-      for category in ["addition", "subtraction", "multiplication", "division"]
-        label += "#{category}:#{ig.game.stats[category].level}  "
-      for category in ["money", "timeIncreases"]
-        label += "#{category}:#{ig.game.stats[category]}  "
+      for skill in ["addition", "subtraction", "multiplication", "division"]
+        label += "#{skill}:#{ig.game.stats[skill].level}  "
+      for item in ["money", "timeIncreases"]
+        label += "#{item}:#{ig.game.stats[item]}  "
+      console.log("About to track", category, action, label, value)
       _gaq.push(['_trackEvent', category, action, label, value])
 
     save: ->
