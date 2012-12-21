@@ -15,5 +15,5 @@ ig.module('game.entities.gates.divisionGate').requires('game.entities.gates.prob
         @correct_answer = n2
 
     equation: ->
-      Math.floor(Math.random()*Math.pow(@difficulty + 1, 1.2))
+      Math.floor(Math.random()*Math.pow(@difficulty + 1, 1.2) + 1)
   )
