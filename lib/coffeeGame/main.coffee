@@ -20,7 +20,9 @@ ig.module(
   'game.levels.1',
   'game.levels.2',
   'game.levels.3',
-  'game.levels.4'
+  'game.levels.4',
+  'game.levels.5',
+  'game.levels.6'
 )
 .defines ->
 
@@ -133,7 +135,7 @@ ig.module(
       for item in ["money", "timeIncreases"]
         label += "#{item}:#{ig.game.stats[item]}  "
       console.log("About to track", category, action, label, value)
-      _gaq.push(['_trackEvent', category, action, label, value])
+      # _gaq.push(['_trackEvent', category, action, label, value])
 
     save: ->
       @storage.set('stats', @stats)
