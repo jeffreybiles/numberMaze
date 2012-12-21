@@ -8,8 +8,8 @@ ig.module(
 )
 .defines ->
   window.EntityDashboard = ig.Entity.extend(
-    font: new ig.Font( 'media/helvetica30EEE.png')
-    spacing: 35
+    font: new ig.Font( 'media/helvetica24EEE.png')
+    spacing: 28
     barLength: 200
 
     init: ->
@@ -19,8 +19,10 @@ ig.module(
 
     draw: ->
       @font.draw("$" + ig.game.stats.money, @pos.x, @pos.y)
-      @drawProgressBar('addition', '+', 'blue', 0.25, 0)
-      @drawProgressBar('subtraction', '- ', 'blue', 0.25, 1)
+      @drawProgressBar('addition', '+', 'blue', 0.15, 0)
+      @drawProgressBar('subtraction', '-', 'blue', 0.15, 1)
+      @drawProgressBar('multiplication', 'X', 'blue', 0.15, 2)
+      @drawProgressBar('division', '%', 'blue', 0.15, 3)
 
     drawProgressBar: (stat, symbol, fillColor, padPercent, position) ->
       padding = @spacing * (1 + padPercent)
@@ -30,10 +32,12 @@ ig.module(
       experienceRequired = ig.game.experienceRequired(level)
       percent = experience/experienceRequired
 
-      @font.draw(symbol + level, @pos.x, @pos.y + @spacing*(position+1))
-      @drawRect(@pos.x + padding, yValue, @barLength,@spacing/2, 'white')
-      @drawRect(@pos.x + padding, yValue, percent * @barLength, @spacing/2, fillColor)
-      this.font.draw("#{experience}/#{experienceRequired}",@pos.x + @barLength + @spacing*2, yValue - 10)
+      @font.draw(symbol, @pos.x, @pos.y + @spacing*(position+1))
+      @font.draw(level, @pos.x + padding, @pos.y + @spacing*(position+1))
+
+      @drawRect(@pos.x + padding*2, yValue, @barLength,@spacing/2, 'white')
+      @drawRect(@pos.x + padding*2, yValue, percent * @barLength, @spacing/2, fillColor)
+      this.font.draw("#{experience}/#{experienceRequired}",@pos.x + @barLength + @spacing*3, yValue - 10)
 
     drawRect: (x, y, width, height, color) ->
       ctx = ig.system.context;
