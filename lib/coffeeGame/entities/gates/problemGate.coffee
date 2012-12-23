@@ -47,9 +47,9 @@ ig.module('game.entities.gates.problemGate').requires('game.entities.gates.gate'
       if(correct)
         @reward()
         @kill()
-        timer.change(5)
+        timer.change(5) if timer?
       else
-        timer.change(-5)
+        timer.change(-5) if timer?
       @parent()
 
     checkAnswer: ->
