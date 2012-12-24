@@ -14,5 +14,5 @@ ig.module('game.entities.gates.multiplicationGate').requires('game.entities.gate
         @correct_answer = n1 * n2
 
     equation: ->
-      Math.floor(Math.random()*Math.pow(@difficulty + 1, 1.2))
+      Math.floor(Math.random()*Math.pow(@difficulty + 1, 1.2) + 1)
   )
