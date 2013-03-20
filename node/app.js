@@ -5,7 +5,9 @@
 
 var express = require('express')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , config = require('./config')
+  , mongoose = require('mongoose');
 
 var app = express();
 
@@ -23,6 +25,15 @@ app.configure(function(){
 
 app.configure('development', function(){
   app.use(express.errorHandler());
+});
+
+app.config(function () {
+ // set the 'dbUrl' to the mongodb url that corresponds to the
+ // environment we are in
+ app.set('dbUrl', config.db[app.settings.env]);
+ // connect mongoose to the mongo dbUrl
+ mongoose.connect(app.get('dbUrl'));
+ //...
 });
 
 app.get('/', function(req, res){

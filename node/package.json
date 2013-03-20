@@ -3,11 +3,19 @@
   "version": "0.0.1-27",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node_modules/.bin/supervisor app.js",
+   "test": "node_modules/.bin/mocha -w"
   },
   "dependencies": {
     "express": "3.0.1",
-    "jade": "*"
+    "jade": "*",
+    "passport": "~0.1.16",
+    "supervisor": "0.4.x",
+    "mongoose": "3.x.x"
+  },
+  "devDependencies": {
+    "mocha": "*",
+   "should": ">= 0.0.1"
   },
   "subdomain": "jeffreybiles.numbermaze",
   "engines": {
