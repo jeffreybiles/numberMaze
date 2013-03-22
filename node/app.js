@@ -7,9 +7,11 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , config = require('./config')
-  , mongoose = require('mongoose');
+  , mongoose = require('mongoose')
+  , expressValidator = require('express-validator')
+  , users = require('./users/routes');
 
-var app = express();
+var app = exports.app = express();
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -19,15 +21,17 @@ app.configure(function(){
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
+  app.use(expressValidator);
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
+
 });
 
 app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.config(function () {
+app.configure(function () {
  // set the 'dbUrl' to the mongodb url that corresponds to the
  // environment we are in
  app.set('dbUrl', config.db[app.settings.env]);
@@ -41,6 +45,15 @@ app.get('/', function(req, res){
     locals: { title: 'Number Maze' }
   });
 });
+// app.get('/users', user.list);
+
+app.get('/add/:first/:second', function(req, res){
+  var sum = parseFloat(req.params.first) + parseFloat(req.params.second)
+  res.send(200, String(sum))
+})
+
+app.post('/signup', users.signup)
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });

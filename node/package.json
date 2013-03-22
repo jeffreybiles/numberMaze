@@ -11,11 +11,15 @@
     "jade": "*",
     "passport": "~0.1.16",
     "supervisor": "0.4.x",
-    "mongoose": "3.x.x"
+    "mongoose": "3.x.x",
+    "bcrypt": "0.7.x",
+    "express-validator": "0.3.x",
+    "validator": "0.4.x"
   },
   "devDependencies": {
     "mocha": "*",
-   "should": ">= 0.0.1"
+   "should": ">= 0.0.1",
+   "supertest": "0.3.x"
   },
   "subdomain": "jeffreybiles.numbermaze",
   "engines": {

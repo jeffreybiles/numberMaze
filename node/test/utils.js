@@ -20,16 +20,38 @@ beforeEach(function (done) {
    return done();
  }
 
- if (mongoose.connection.readyState === 0) {
+ function reconnect() {
    mongoose.connect(config.db.test, function (err) {
      if (err) {
        throw err;
      }
      return clearDB();
    });
- } else {
-   return clearDB();
  }
+
+ function reconnect() {
+   mongoose.connect(config.db.test, function (err) {
+     if (err) {
+       throw err;
+     }
+     return clearDB();
+   });
+ }
+
+ function checkState() {
+   switch (mongoose.connection.readyState) {
+   case 0:
+     reconnect();
+     break;
+   case 1:
+     clearDB();
+     break;
+   default:
+     process.nextTick(checkState);
+   }
+ }
+
+ checkState();
 });
 
 afterEach(function (done) {
