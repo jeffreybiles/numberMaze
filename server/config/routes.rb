@@ -1,8 +1,11 @@
 Server::Application.routes.draw do
 
-
-  post '/signup', to: 'identities#create', as: :json
-  resources :identities, :defaults => { :format => 'json' }
+scope :api do
+  scope :v1 do
+    post '/signup', to: 'identities#create', as: :json
+    resources :identities, :defaults => { :format => 'json' }
+  end
+end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
